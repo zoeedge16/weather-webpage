@@ -1,6 +1,6 @@
 var apiKey = '675793050fa3144fb1fed403f292b937'
 
-var searchArea = document.querySelector('.search-container');
+var searchArea = document.querySelector('.search-area');
 var temp = document.querySelector('#temp');
 var wind = document.querySelector('#wind');
 var humidity = document.querySelector('#humidity');
