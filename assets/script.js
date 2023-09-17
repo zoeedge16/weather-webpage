@@ -8,7 +8,7 @@ var wind = document.querySelector('#wind');
 var humidity = document.querySelector('#humidity');
 var fiveDayEl = document.querySelector('#forecast');
 var currentDay = document.querySelector('.current-day')
-var currentDate = document.querySelector('MM/DD/YYYY')
+var currentDate = dayjs().format('MM/DD/YYYY')
 
 
 function getGeo (city) {
@@ -57,11 +57,11 @@ function getForecast(lat, lon) {
                 cardBodyEl.setAttribute('class', 'card-body');
                 cardEl.appendChild(cardBodyEl);
                 var dateEl = document.createElement('h5');
-                dateEl.innerHTML = dayjs((data.list[i]).dt_txt.substring(0, 10).format('MM/DD/YYYY'));
+                dateEl.innerHTML = dayjs(data.list[i].dt_txt.substring(0, 10)).format('MM/DD/YYYY');
                 dateEl.setAttribute('class', 'card-title text-dark');
                 dateEl.setAttribute('style', 'text-align: center;');
                 var iconEl = document.createElement('h6');
-                iconEl.innerHTML = '<img src="https://openweathermap.org/img/w" '+ data.list[i].weather[0].icon +' ".png" alt= "weather icon">';
+                iconEl.innerHTML = '<img src="https://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png" alt="weather icon">'
                 iconEl.setAttribute('class', 'card-title text-dark');
                 iconEl.setAttribute('style', 'text-align: center;');
                 var fiveTempEl = document.createElement('p')
@@ -86,7 +86,7 @@ function getForecast(lat, lon) {
     })
 }
 
-function clearFiveDay() {
+function clearPreviousData() {
     fiveDayEl.innerHTML = '';
 }
 
@@ -94,6 +94,13 @@ function setView(view) {
     currentDay.style.display = view === 'START' ? null  : 'none';
 }
 
-getGeo();
-getWeather();
-getForecast();
+function handleSubmit(event) {
+    event.preventDefault();
+    clearPreviousData();
+
+    var city = searchInput.value.trim();
+    getGeo(city);
+    setView('START');
+}
+
+searchArea.addEventListener('submit', handleSubmit);
