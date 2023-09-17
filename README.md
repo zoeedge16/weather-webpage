@@ -1,11 +1,13 @@
 # weather-webpage
 
 ## Description
-This weather app should allow a user to search for a citys weather and come up with the 5 day forecast.
+This weather app should allow a user to search for a city's weather. Using script.js, index.html, and style.css, this weather app allows you to search the forecast for any city. This also searches the 5 day forecast.  
 
 ## Deployed
 [Deployed]()
 
-[Repository]()
+[Repository](https://github.com/zoeedge16/weather-webpage)
 
 ## Screenshot
+
+![screenshot](./image/Weather-Dashboard.png)
